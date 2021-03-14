@@ -1,0 +1,353 @@
+﻿<Window x:Class="Stunts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:stunts="clr-namespace:Stunts"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Title="MainWindow" Height="900" Width="1100">
+    <Window.Resources>
+
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.Bottom}" ImageSource="Images/Terrain/Bottom.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.Top}" ImageSource="Images/Terrain/Top.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.Side}" ImageSource="Images/Terrain/Side.png" />
+
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.TopNorthEast}" ImageSource="Images/Terrain/Top.North.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.TopNorthWest}" ImageSource="Images/Terrain/Top.North.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.TopSouthEast}" ImageSource="Images/Terrain/Top.South.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.TopSouthWest}" ImageSource="Images/Terrain/Top.South.West.png" />
+
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.BottomNorthEast}" ImageSource="Images/Terrain/Bottom.North.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.BottomNorthWest}" ImageSource="Images/Terrain/Bottom.North.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.BottomSouthEast}" ImageSource="Images/Terrain/Bottom.South.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:TerrainItem.BottomSouthWest}" ImageSource="Images/Terrain/Bottom.South.West.png" />
+
+        <SolidColorBrush x:Key="{x:Static stunts:StreetItem.Empty}" Color="Transparent" />
+
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StartFinishNorth}" ImageSource="Images/Street/Start.Finish.North.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StartFinishSouth}" ImageSource="Images/Street/Start.Finish.South.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StartFinishEast}" ImageSource="Images/Street/Start.Finish.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StartFinishWest}" ImageSource="Images/Street/Start.Finish.West.png" />
+
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StreetEastWest}" ImageSource="Images/Street/Street.East.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.StreetNorthSouth}" ImageSource="Images/Street/Street.North.South.png" />
+
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCross}" ImageSource="Images/Street/Small.Cross.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossWestSouthEast}" ImageSource="Images/Street/Small.Cross.West.South.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossWestNorthEast}" ImageSource="Images/Street/Small.Cross.West.North.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossEastSouthWest}" ImageSource="Images/Street/Small.Cross.East.South.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossEastNorthWest}" ImageSource="Images/Street/Small.Cross.East.North.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossSouthWestNorth}" ImageSource="Images/Street/Small.Cross.South.West.North.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossSouthEastNorth}" ImageSource="Images/Street/Small.Cross.South.East.North.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossNorthWestSouth}" ImageSource="Images/Street/Small.Cross.North.West.South.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCrossNorthEastSouth}" ImageSource="Images/Street/Small.Cross.North.East.South.png" />
+
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCurveNorthEast}" ImageSource="Images/Street/Small.Curve.North.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCurveNorthWest}" ImageSource="Images/Street/Small.Curve.North.West.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCurveSouthEast}" ImageSource="Images/Street/Small.Curve.South.East.png" />
+        <ImageBrush x:Key="{x:Static stunts:StreetItem.SmallCurveSouthWest}" ImageSource="Images/Street/Small.Curve.South.West.png" />
+
+        <Style x:Key="BaseButton" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Margin" Value="1,1,0,0" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                                <Border 
+                                    Width="{TemplateBinding Width}" 
+                                    Height="{TemplateBinding Height}"
+                                    Background="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FFFFFF00" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MenuButton" BasedOn="{StaticResource BaseButton}" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="#FF232323" />
+                <Setter Property="Foreground" Value="#FFE3E3E3" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                Margin="{TemplateBinding Margin}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                                <ContentPresenter 
+                                    Content="{TemplateBinding Content}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+        </Style>
+
+        <Style BasedOn="{StaticResource BaseButton}" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.Bottom}}" />
+                <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.Empty}}" />
+                <Setter Property="Width" Value="32" />
+                <Setter Property="Height" Value="32" />
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.Bottom}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.Bottom}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.Top}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.Top}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.Side}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.Side}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.TopNorthEast}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.TopNorthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.TopNorthWest}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.TopNorthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.TopSouthEast}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.TopSouthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.TopSouthWest}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.TopSouthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.BottomNorthEast}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.BottomNorthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.BottomNorthWest}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.BottomNorthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.BottomSouthEast}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.BottomSouthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Terrain" Value="{x:Static stunts:TerrainItem.BottomSouthWest}">
+                    <Setter Property="Background" Value="{StaticResource {x:Static stunts:TerrainItem.BottomSouthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StartFinishNorth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StartFinishNorth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StartFinishSouth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StartFinishSouth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StartFinishEast}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StartFinishEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StartFinishWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StartFinishWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StreetEastWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StreetEastWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.StreetNorthSouth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.StreetNorthSouth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCross}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCross}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossWestSouthEast}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossWestSouthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossWestNorthEast}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossWestNorthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossEastSouthWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossEastSouthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossEastNorthWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossEastNorthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossSouthWestNorth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossSouthWestNorth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossSouthEastNorth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossSouthEastNorth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossNorthWestSouth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossNorthWestSouth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCrossNorthEastSouth}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCrossNorthEastSouth}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCurveNorthEast}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCurveNorthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCurveNorthWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCurveNorthWest}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCurveSouthEast}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCurveSouthEast}}" />
+                </Trigger>
+                <Trigger Property="stunts:TileButtonExtensions.Item" Value="{x:Static stunts:StreetItem.SmallCurveSouthWest}">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static stunts:StreetItem.SmallCurveSouthWest}}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <stunts:CurrentItemConverter x:Key="CurrentItemConverter" />
+
+        <Style x:Key="ToolbarButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Margin" Value="2" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Value="True">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource CurrentItemConverter}">
+                            <Binding Path="CurrentItem" />
+                            <Binding Path="(stunts:TileButtonExtensions.Terrain)" RelativeSource="{RelativeSource Self}" />
+                            <Binding Path="(stunts:TileButtonExtensions.Item)" RelativeSource="{RelativeSource Self}" />
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#FFFF8C00" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TerrainButton" BasedOn="{StaticResource ToolbarButton}" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Command" Value="{Binding SelectItemCommand}" />
+                <Setter Property="CommandParameter" Value="{Binding Path=(stunts:TileButtonExtensions.Terrain), RelativeSource={RelativeSource Self}}" />
+            </Style.Setters>
+        </Style>
+
+        <Style x:Key="StreetButton" BasedOn="{StaticResource ToolbarButton}" TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Command" Value="{Binding SelectItemCommand}" />
+                <Setter Property="CommandParameter" Value="{Binding Path=(stunts:TileButtonExtensions.Item), RelativeSource={RelativeSource Self}}" />
+            </Style.Setters>
+        </Style>
+
+    </Window.Resources>
+    <Window.DataContext>
+        <stunts:MainViewModel />
+    </Window.DataContext>
+    <DockPanel LastChildFill="True" Background="#242424">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button 
+                Content="New" 
+                Style="{StaticResource MenuButton}" 
+                Command="{Binding NewCommand}" />
+            <Button 
+                Content="Save" 
+                Style="{StaticResource MenuButton}" 
+                Command="{Binding SaveCommand}" />
+            <ComboBox 
+                IsEditable="True" 
+                Width="150"
+                ItemsSource="{Binding TrackFiles}" 
+                SelectedItem="{Binding SelectedTrackFile, Mode=TwoWay}"
+                Text="{Binding TrackFileName, UpdateSourceTrigger=PropertyChanged, Delay=5, Mode=OneWayToSource}" />
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="5">
+            <Border BorderThickness="2" BorderBrush="#4a4a4a" Margin="4" Background="#323232">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="#4a4a4a">
+                        <TextBlock Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">Terrain</TextBlock>
+                    </Border>
+
+                    <Button Grid.Row="1" Grid.Column="0" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.Bottom}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="1" Grid.Column="1" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.Side}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="1" Grid.Column="2" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.Top}" Style="{StaticResource TerrainButton}" />
+
+                    <Button Grid.Row="2" Grid.Column="0" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.TopSouthEast}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="2" Grid.Column="1" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.TopSouthWest}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="3" Grid.Column="0" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.TopNorthEast}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="3" Grid.Column="1" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.TopNorthWest}" Style="{StaticResource TerrainButton}" />
+
+                    <Button Grid.Row="2" Grid.Column="2" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.BottomNorthWest}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="2" Grid.Column="3" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.BottomNorthEast}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="3" Grid.Column="2" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.BottomSouthWest}" Style="{StaticResource TerrainButton}" />
+                    <Button Grid.Row="3" Grid.Column="3" stunts:TileButtonExtensions.Terrain="{x:Static stunts:TerrainItem.BottomSouthEast}" Style="{StaticResource TerrainButton}" />
+                </Grid>
+            </Border>
+            <Border BorderThickness="2" BorderBrush="#4a4a4a" Margin="4" Background="#323232">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="#4a4a4a">
+                        <TextBlock Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">Streets</TextBlock>
+                    </Border>
+
+                    <Button Grid.Row="1" Grid.Column="0" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.Empty}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="1" Grid.Column="1" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StreetEastWest}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="1" Grid.Column="2" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StreetNorthSouth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="1" Grid.Column="3" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCross}" Style="{StaticResource StreetButton}" />
+
+                    <Button Grid.Row="2" Grid.Column="0" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StartFinishNorth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="2" Grid.Column="1" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StartFinishEast}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="3" Grid.Column="0" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StartFinishSouth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="3" Grid.Column="1" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.StartFinishWest}" Style="{StaticResource StreetButton}" />
+
+                    <Button Grid.Row="2" Grid.Column="2" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCurveSouthEast}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="2" Grid.Column="3" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCurveSouthWest}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="3" Grid.Column="2" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCurveNorthEast}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="3" Grid.Column="3" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCurveNorthWest}" Style="{StaticResource StreetButton}" />
+
+                    <Button Grid.Row="4" Grid.Column="0" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossEastSouthWest}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="4" Grid.Column="1" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossWestSouthEast}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="5" Grid.Column="0" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossEastNorthWest}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="5" Grid.Column="1" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossWestNorthEast}" Style="{StaticResource StreetButton}" />
+
+                    <Button Grid.Row="4" Grid.Column="2" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossSouthEastNorth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="4" Grid.Column="3" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossSouthWestNorth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="5" Grid.Column="2" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossNorthEastSouth}" Style="{StaticResource StreetButton}" />
+                    <Button Grid.Row="5" Grid.Column="3" stunts:TileButtonExtensions.Item="{x:Static stunts:StreetItem.SmallCrossNorthWestSouth}" Style="{StaticResource StreetButton}" />
+                </Grid>
+            </Border>
+        </StackPanel>
+        <Grid Margin="5" x:Name="Workspace" />
+    </DockPanel>
+</Window>

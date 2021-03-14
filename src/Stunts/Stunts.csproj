@@ -1,0 +1,111 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Bottom.North.East.png" />
+    <None Remove="Images\Bottom.North.West.png" />
+    <None Remove="Images\Bottom.South.East.png" />
+    <None Remove="Images\Bottom.South.West.png" />
+    <None Remove="Images\HillBottom.png" />
+    <None Remove="Images\HillBottomLeftInverted.png" />
+    <None Remove="Images\HillBottomRightInverted.png" />
+    <None Remove="Images\HillLeft.png" />
+    <None Remove="Images\HillRight.png" />
+    <None Remove="Images\HillTop.png" />
+    <None Remove="Images\HillTopLeftInverted.png" />
+    <None Remove="Images\HillTopRightInverted.png" />
+    <None Remove="Images\Small.Curve.North.East.png" />
+    <None Remove="Images\Small.Curve.North.West.png" />
+    <None Remove="Images\Small.Curve.South.East.png" />
+    <None Remove="Images\Small.Curve.South.West.png" />
+    <None Remove="Images\Start.Bottom.Vertical.png" />
+    <None Remove="Images\Start.Left.Horizontal.png" />
+    <None Remove="Images\Start.Right.Horizontal.png" />
+    <None Remove="Images\Start.Top.Vertical.png" />
+    <None Remove="Images\Street.Cross.Bottom.Left.Horizontal.png" />
+    <None Remove="Images\Street.Cross.Bottom.Left.Vertical.png" />
+    <None Remove="Images\Street.Cross.Bottom.Right.Horizontal.png" />
+    <None Remove="Images\Street.Cross.Bottom.Right.Vertical.png" />
+    <None Remove="Images\Street.Cross.png" />
+    <None Remove="Images\Street.Cross.Top.Left.Horizontal.png" />
+    <None Remove="Images\Street.Cross.Top.Left.Vertical.png" />
+    <None Remove="Images\Street.Cross.Top.Right.Horizontal.png" />
+    <None Remove="Images\Street.Cross.Top.Right.Vertical.png" />
+    <None Remove="Images\Street.East.West.png" />
+    <None Remove="Images\Street.North.South.png" />
+    <None Remove="Images\Street\Small.Cross.West.South.East.png" />
+    <None Remove="Images\Street\Street.Cross.East.North.West.svg" />
+    <None Remove="Images\Street\Street.Cross.East.South.West.svg" />
+    <None Remove="Images\Street\Street.Cross.North.East.South.svg" />
+    <None Remove="Images\Street\Street.Cross.North.West.South.svg" />
+    <None Remove="Images\Street\Street.Cross.South.East.North.svg" />
+    <None Remove="Images\Street\Street.Cross.South.West.North.svg" />
+    <None Remove="Images\Street\Street.Cross.svg" />
+    <None Remove="Images\Street\Street.Cross.West.North.East.svg" />
+    <None Remove="Images\Street\Street.Cross.West.South..East.svg" />
+    <None Remove="Images\Street\Street.East.West.svg" />
+    <None Remove="Images\Street\Street.North.South.svg" />
+    <None Remove="Images\Terrain.Bottom.png" />
+    <None Remove="Images\Terrain.Side.png" />
+    <None Remove="Images\Terrain.Top.png" />
+    <None Remove="Images\Top.North.East.png" />
+    <None Remove="Images\Top.North.West.png" />
+    <None Remove="Images\Top.South.East.png" />
+    <None Remove="Images\Top.South.West.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Street\Small.Cross.West.South.East.png" />
+    <Resource Include="Images\Terrain\Bottom.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Terrain\Bottom.South.West.png" />
+    <Resource Include="Images\Terrain\Bottom.South.East.png" />
+    <Resource Include="Images\Terrain\Bottom.North.West.png" />
+    <Resource Include="Images\Terrain\Bottom.North.East.png" />
+    <Resource Include="Images\Terrain\Top.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Terrain\Top.North.East.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Terrain\Top.North.West.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Terrain\Side.png" />
+    <Resource Include="Images\Terrain\Top.South.East.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Terrain\Top.South.West.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Street\Start.Finish.South.png" />
+    <Resource Include="Images\Street\Start.Finish.West.png" />
+    <Resource Include="Images\Street\Start.Finish.East.png" />
+    <Resource Include="Images\Street\Start.Finish.North.png" />
+    <Resource Include="Images\Street\Small.Cross.South.West.North.png" />
+    <Resource Include="Images\Street\Small.Cross.East.South.West.png" />
+    <Resource Include="Images\Street\Small.Cross.South.East.North.png" />
+    <Resource Include="Images\Street\Small.Cross.png" />
+    <Resource Include="Images\Street\Small.Cross.West.North.East.png" />
+    <Resource Include="Images\Street\Small.Cross.North.West.South.png" />
+    <Resource Include="Images\Street\Small.Cross.East.North.West.png" />
+    <Resource Include="Images\Street\Small.Cross.North.East.South.png" />
+    <Resource Include="Images\Street\Small.Curve.South.West.png" />
+    <Resource Include="Images\Street\Small.Curve.South.East.png" />
+    <Resource Include="Images\Street\Small.Curve.North.West.png" />
+    <Resource Include="Images\Street\Small.Curve.North.East.png" />
+    <Resource Include="Images\Street\Street.East.West.png" />
+    <Resource Include="Images\Street\Street.North.South.png" />
+  </ItemGroup>
+
+</Project>
